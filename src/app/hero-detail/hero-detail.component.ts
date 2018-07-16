@@ -23,6 +23,7 @@ export class HeroDetailComponent implements OnInit {
     this.getHero();
   }
 
+  // this method uses the Activatedroute service 
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
