@@ -24,11 +24,7 @@ export class RouterLinkDirectiveStub{
 
 }
 
-
-
-
-
-fdescribe('test heroes component',()=>{
+describe('test heroes component',()=>{
 
 
   // fixture a wrapper for a Component with extra methods for testing
@@ -86,6 +82,23 @@ fdescribe('test heroes component',()=>{
 
 
   });
+
+
+  it('should have the correct route for the first hero',()=>{
+
+    MockService.getHeroes.and.returnValue(of(heroes));
+    fixture.detectChanges();
+
+   const heroComponents = fixture.debugElement.queryAll(By.directive(HeroComponent));
+    let routerLink = heroComponents[0].query(By.directive(RouterLinkDirectiveStub)).injector.get(RouterLinkDirectiveStub);
+
+    heroComponents[0].query(By.css('a')).triggerEventHandler('click',null);
+
+    expect(routerLink.navigatedTo).toBe('/detail/1');
+
+  })
+
+
 
 
 });
