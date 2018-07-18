@@ -11,7 +11,7 @@ pipe test : strentgh.pipe.spec.ts
 service test : message.service.spec.ts
 
 component test : heroes.component.spec.ts 
-* Testing with the TestBed : 
+* ### Testing with the TestBed : 
 
  **component** : hero.component.spec.ts 
  
