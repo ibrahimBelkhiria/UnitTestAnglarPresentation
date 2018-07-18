@@ -17,11 +17,12 @@ describe('test the hero detail component',()=>{
   beforeEach(()=>{
     mockHeroService = jasmine.createSpyObj(['getHero','updateHero']);
     mockLocation = jasmine.createSpyObj(['back']);
+     // mocking the activated route :
     mockActivatedRoute =
       {
         snapshot:{
         paramMap:{
-          get:()=>{ return '3'}
+          get:()=>{ return '3'}   // mocking the id param
         }
       }
       };
@@ -40,6 +41,8 @@ describe('test the hero detail component',()=>{
         });
 
       fixture = TestBed.createComponent(HeroDetailComponent);
+
+      // the method getHero uses activatedRoute service
       mockHeroService.getHero.and.returnValue(of({id:3,name:'superDude',strength:100}));
   });
 

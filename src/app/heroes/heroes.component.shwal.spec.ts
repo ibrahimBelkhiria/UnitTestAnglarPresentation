@@ -18,6 +18,8 @@ describe('test heroes component',()=>{
   let MockService;
   let heroes;
 
+   // mocking the child component
+
   @Component({
     selector: 'app-hero',
     template: '<div>{{hero.name}}</div>',
@@ -65,31 +67,6 @@ describe('test heroes component',()=>{
   });
 
 
-  it('should add a  new hero to the heroes list when the add button is clicked ',()=>{
-
-    MockService.getHeroes.and.returnValue(of(heroes));
-    fixture.detectChanges();
-
-
-    const name ="Mr.Ice";
-     MockService.addHero.and.returnValue(of({id:5,name:name,strength:11}));
-    const inputElement =  fixture.debugElement.query(By.css('input')).nativeElement;
-    const addButton = fixture.debugElement.queryAll(By.css('button'))[0];
-
-    inputElement.value = name;
-    console.log(inputElement.value);
-    addButton.triggerEventHandler('click',null);
-
-    fixture.detectChanges();
-
-
-    const heroText = fixture.debugElement.query(By.css('ul')).nativeElement.textContent;
-
-     console.log(heroText);
-    expect(heroText).toContain(name);
-
-
-  });
 
 
 });

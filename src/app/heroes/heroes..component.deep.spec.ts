@@ -10,13 +10,14 @@ import {HeroComponent} from '../hero/hero.component';
 import {By} from '@angular/platform-browser';
 
 
+// mocking the router link directive
 @Directive({
   selector:'[routerLink]',
-  host:{'(click)':'onClick()'}
+  host:{'(click)':'onClick()'}    // listener to the click event
 })
 export class RouterLinkDirectiveStub{
 
-  @Input('routerLink') linkParams:any;
+  @Input('routerLink') linkParams:any;  // pour connaitre la valeur <a routerLink="/detail/{{hero.id}}">
   navigatedTo:any=null;
   onClick() {
     this.navigatedTo  = this.linkParams;
@@ -56,6 +57,7 @@ describe('test heroes component',()=>{
   });
 
 
+  // test
 
   it('should add a  new hero to the heroes list when the add button is clicked ',()=>{
 
@@ -84,12 +86,13 @@ describe('test heroes component',()=>{
   });
 
 
+  /// test the router link
   it('should have the correct route for the first hero',()=>{
 
     MockService.getHeroes.and.returnValue(of(heroes));
     fixture.detectChanges();
 
-   const heroComponents = fixture.debugElement.queryAll(By.directive(HeroComponent));
+    const heroComponents = fixture.debugElement.queryAll(By.directive(HeroComponent)); // return a collection of herocomponent
     let routerLink = heroComponents[0].query(By.directive(RouterLinkDirectiveStub)).injector.get(RouterLinkDirectiveStub);
 
     heroComponents[0].query(By.css('a')).triggerEventHandler('click',null);
